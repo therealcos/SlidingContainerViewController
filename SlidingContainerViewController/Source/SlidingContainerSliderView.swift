@@ -31,6 +31,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
   public var titles: [String]!
   public var labels: [UILabel] = []
   public var selector: UIView!
+  public var selectedIndex: Int!
   public weak var sliderDelegate: SlidingContainerSliderViewDelegate?
 
   public var appearance: SlidingContainerSliderViewAppearance! {
@@ -44,7 +45,8 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
   public init(width: CGFloat, titles: [String]) {
     super.init(frame: CGRect (x: 0, y: 0, width: width, height: sliderHeight))
     self.titles = titles
-
+    
+    selectedIndex = 0
     delegate = self
     showsHorizontalScrollIndicator = false
     showsVerticalScrollIndicator = false
@@ -157,6 +159,8 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
   // MARK: Menu
 
   public func selectItemAtIndex(_ index: Int) {
+    selectedIndex = index
+    
     // Set Labels
     for i in 0..<self.labels.count {
       let label = labels[i]
