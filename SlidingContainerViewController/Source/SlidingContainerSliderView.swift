@@ -143,6 +143,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
     label.textAlignment = .center
     label.sizeToFit()
     label.frame.size.width += appearance.innerPadding * 2
+    label.frame.size.height = 44
     label.addGestureRecognizer(UITapGestureRecognizer (
       target: self,
       action: #selector(SlidingContainerSliderView.didTap(_:))))
@@ -173,6 +174,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
         if !appearance.fixedWidth {
           label.sizeToFit()
           label.frame.size.width += appearance.innerPadding * 2
+          label.frame.size.height = 44
         }
 
         // Set selector
@@ -190,6 +192,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
         if !appearance.fixedWidth {
           label.sizeToFit()
           label.frame.size.width += appearance.innerPadding * 2
+          label.frame.size.height = 44
         }
       }
     }
