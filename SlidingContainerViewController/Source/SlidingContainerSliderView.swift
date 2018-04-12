@@ -159,7 +159,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
 
   // MARK: Menu
 
-  public func selectItemAtIndex(_ index: Int) {
+  public func selectItemAtIndex(_ index: Int, animated: Bool = true) {
     selectedIndex = index
     
     // Set Labels
@@ -178,7 +178,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
         }
 
         // Set selector
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: animated ? 0.3 : 0, animations: {
           [unowned self] in
           self.selector.frame = CGRect (
             x: label.frame.origin.x,
