@@ -80,7 +80,7 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
 
   // MARK: ChildViewController Management
 
-  public func setCurrentViewControllerAtIndex(_ index: Int) {
+  public func setCurrentViewControllerAtIndex(_ index: Int, animated: Bool = true) {
     for i in 0..<self.contentViewControllers.count {
       let vc = contentViewControllers[i]
 
@@ -96,12 +96,12 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
       }
     }
 
-    sliderView.selectItemAtIndex(index)
+    sliderView.selectItemAtIndex(index, animated: animated)
     
     var offset = contentScrollView.contentOffset
     offset.x = contentScrollView.frame.size.width * CGFloat(index)
     contentScrollView.setContentOffset( offset,
-                                        animated: true)
+                                        animated: animated)
 
     navigationController?.navigationItem.title = titles[index]
   }
