@@ -49,7 +49,7 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
     contentScrollView.contentSize.width = contentScrollView.frame.size.width * CGFloat(contentViewControllers.count)
 
     view.addSubview(contentScrollView)
-    view.addSubview(sliderView)
+    navigationController?.navigationBar.addSubview(sliderView)
 
     // Add Child View Controllers
     var currentX: CGFloat = 0
