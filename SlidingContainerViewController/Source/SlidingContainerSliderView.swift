@@ -140,7 +140,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
 
   public func labelWithTitle(_ title: String) -> UILabel {
     let label = UILabel (frame: CGRect (x: 0, y: 0, width: 0, height: 0))
-    label.attributedText = NSAttributedString(string: title, attributes: [NSFontAttributeName: appearance.font, NSForegroundColorAttributeName: appearance.textColor, NSKernAttributeName: appearance.kern])
+    label.attributedText = NSAttributedString(string: title, attributes: [.font: appearance.font, .foregroundColor: appearance.textColor, .kern: appearance.kern])
     label.textAlignment = .center
     label.sizeToFit()
     label.frame.size.width += appearance.innerPadding * 2
