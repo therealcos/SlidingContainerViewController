@@ -102,8 +102,6 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
     offset.x = contentScrollView.frame.size.width * CGFloat(index)
     contentScrollView.setContentOffset( offset,
                                         animated: animated)
-
-    navigationController?.navigationItem.title = titles[index]
   }
 
   // MARK: SlidingContainerSliderViewDelegate
