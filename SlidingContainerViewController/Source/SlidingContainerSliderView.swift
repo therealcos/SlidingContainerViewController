@@ -12,6 +12,7 @@ public struct SlidingContainerSliderViewAppearance {
   public var backgroundColor: UIColor
   public var font: UIFont
   public var selectedFont: UIFont
+  public var kern: CGFloat
   public var textColor: UIColor
   public var selectedTextColor: UIColor
   public var outerPadding: CGFloat
@@ -27,7 +28,8 @@ public protocol SlidingContainerSliderViewDelegate: class {
 
 public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
   public var shouldSlide: Bool = true
-  public var sliderHeight: CGFloat = 50
+  public var sliderHeight: CGFloat = 40
+  public var sliderY: CGFloat = 4
   public var titles: [String]!
   public var labels: [UILabel] = []
   public var selector: UIView!
@@ -56,6 +58,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
       backgroundColor: UIColor(white: 0, alpha: 0.3),
       font: UIFont (name: "HelveticaNeue-Light", size: 15)!,
       selectedFont: UIFont.systemFont(ofSize: 15),
+      kern: 0,
       textColor: UIColor.darkGray,
       selectedTextColor: UIColor.white,
       outerPadding: 10,
@@ -137,13 +140,11 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
 
   public func labelWithTitle(_ title: String) -> UILabel {
     let label = UILabel (frame: CGRect (x: 0, y: 0, width: 0, height: 0))
-    label.text = title
-    label.font = appearance.font
-    label.textColor = appearance.textColor
+    label.attributedText = NSAttributedString(string: title, attributes: [NSFontAttributeName: appearance.font, NSForegroundColorAttributeName: appearance.textColor, NSKernAttributeName: appearance.kern])
     label.textAlignment = .center
     label.sizeToFit()
     label.frame.size.width += appearance.innerPadding * 2
-    label.frame.size.height = 44
+    label.frame.size.height = sliderHeight
     label.addGestureRecognizer(UITapGestureRecognizer (
       target: self,
       action: #selector(SlidingContainerSliderView.didTap(_:))))
@@ -167,14 +168,10 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
       let label = labels[i]
 
       if i == index {
-
-        label.textColor = appearance.selectedTextColor
-        label.font = appearance.selectedFont
-
         if !appearance.fixedWidth {
           label.sizeToFit()
           label.frame.size.width += appearance.innerPadding * 2
-          label.frame.size.height = 44
+          label.frame.size.height = sliderHeight
         }
 
         // Set selector
@@ -192,7 +189,7 @@ public class SlidingContainerSliderView: UIScrollView, UIScrollViewDelegate {
         if !appearance.fixedWidth {
           label.sizeToFit()
           label.frame.size.width += appearance.innerPadding * 2
-          label.frame.size.height = 44
+          label.frame.size.height = sliderHeight
         }
       }
     }

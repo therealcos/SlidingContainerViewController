@@ -37,7 +37,7 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
 
     // Setup Views
     sliderView = SlidingContainerSliderView (width: view.frame.size.width, titles: titles)
-    sliderView.frame.origin.y = parent.topLayoutGuide.length
+    sliderView.frame.origin.y = parent.topLayoutGuide.length + sliderView.sliderY
     sliderView.sliderDelegate = self
 
     contentScrollView = UIScrollView (frame: view.frame)
