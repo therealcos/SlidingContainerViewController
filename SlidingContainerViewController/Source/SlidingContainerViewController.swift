@@ -56,7 +56,7 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
     for vc in contentViewControllers {
       vc.view.frame = CGRect (
         x: currentX,
-        y: parent.topLayoutGuide.length+16,
+        y: parent.topLayoutGuide.length+17,
         width: view.frame.size.width,
         height: view.frame.size.height - parent.topLayoutGuide.length - parent.bottomLayoutGuide.length)
       contentScrollView.addSubview(vc.view)
