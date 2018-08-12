@@ -81,27 +81,13 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
   // MARK: ChildViewController Management
 
   public func setCurrentViewControllerAtIndex(_ index: Int, animated: Bool = true) {
-    for i in 0..<self.contentViewControllers.count {
-      let vc = contentViewControllers[i]
-
-      if i == index {
-        vc.willMove(toParentViewController: self)
-        addChildViewController(vc)
-        vc.didMove(toParentViewController: self)
-        delegate?.slidingContainerViewControllerDidMoveToViewController(self, viewController: vc, atIndex: index)
-      } else {
-        vc.willMove(toParentViewController: self)
-        vc.removeFromParentViewController()
-        vc.didMove(toParentViewController: self)
-      }
-    }
+    delegate?.slidingContainerViewControllerDidMoveToViewController(self, viewController: contentViewControllers[index], atIndex: index)
 
     sliderView.selectItemAtIndex(index, animated: animated)
     
     var offset = contentScrollView.contentOffset
     offset.x = contentScrollView.frame.size.width * CGFloat(index)
-    contentScrollView.setContentOffset( offset,
-                                        animated: animated)
+    contentScrollView.setContentOffset(offset, animated: animated)
   }
 
   // MARK: SlidingContainerSliderViewDelegate
