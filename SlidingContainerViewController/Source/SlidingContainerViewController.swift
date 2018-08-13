@@ -73,13 +73,11 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
   }
 
   // MARK: Lifecycle
-
   public override func viewDidLoad() {
     super.viewDidLoad()
   }
 
   // MARK: ChildViewController Management
-
   public func setCurrentViewControllerAtIndex(_ index: Int, animated: Bool = true) {
     delegate?.slidingContainerViewControllerDidMoveToViewController(self, viewController: contentViewControllers[index], atIndex: index)
 
@@ -91,14 +89,12 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
   }
 
   // MARK: SlidingContainerSliderViewDelegate
-
   public func slidingContainerSliderViewDidPressed(_ slidingContainerSliderView: SlidingContainerSliderView, atIndex: Int) {
     sliderView.shouldSlide = false
     setCurrentViewControllerAtIndex(atIndex)
   }
 
   // MARK: SliderView
-
   public func hideSlider() {
     guard !sliderViewShown else { return }
 
@@ -130,7 +126,6 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
   }
 
   // MARK: UIScrollViewDelegate
-
   public func scrollViewDidScroll(_ scrollView: UIScrollView) {
     if scrollView.panGestureRecognizer.state == .began {
       sliderView.shouldSlide = true
@@ -145,6 +140,8 @@ public class SlidingContainerViewController: UIViewController, UIScrollViewDeleg
     if sliderView.contentSize.width > sliderView.frame.size.width && sliderView.shouldSlide == true {
       sliderView.contentOffset = CGPoint (x: sliderW * ratio, y: 0)
     }
+    
+    view.endEditing(true)
   }
 
   public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
